@@ -1,0 +1,37 @@
+{
+  "name": "my-electron-app",
+  "version": "1.0.0",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dev": "concurrently \"npm run backend\" \"npm run frontend\" \"wait-on http://localhost:3000 && electron .\"",
+    "frontend": "cd frontend && npm start",
+    "backend": "cd backend && node src/index.js",
+    "build": "cd frontend && npm run build",
+    "dist": "electron-builder"
+  },
+  "dependencies": {
+},
+"devDependencies": {
+  "electron": "^30.0.0",
+  "electron-builder": "^26.0.12",
+  "concurrently": "^8.0.0",
+  "wait-on": "^7.0.1"
+},
+  "build": {
+    "appId": "com.miempresa.miapp",
+    "productName": "MiAppElectron", 
+    "files": [
+      "main.js",
+      "backend/**/*",
+      "frontend/build/**/*"
+    ],
+    "directories": {
+      "output": "dist"
+    },
+    "win": {
+      "target": "nsis",
+      "icon": "assets/icon.ico" 
+    }
+  }
+}
